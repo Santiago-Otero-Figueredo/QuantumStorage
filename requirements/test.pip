@@ -1,0 +1,4 @@
+coverage==5.5
+pylint-django==2.4.4
+flake8==3.9.2
+pep8-naming==0.11.1
