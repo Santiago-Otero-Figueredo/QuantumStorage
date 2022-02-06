@@ -50,16 +50,16 @@ DATABASES = {
     'default': get_secret('DATABASE_DEFAULT'),
 }
 
-DATABASE_ROUTERS = (
-    'django_tenants.routers.TenantSyncRouter',
-)
+#DATABASE_ROUTERS = (
+#    'django_tenants.routers.TenantSyncRouter',
+#)
 
 # URLS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
 #ROOT_URLCONF = 'config.urls'
-ROOT_URLCONF = 'config.tenant_urls'
-PUBLIC_SCHEMA_URLCONF = 'config.public_urls'
+ROOT_URLCONF = 'config.urls'
+#PUBLIC_SCHEMA_URLCONF = 'config.public_urls'
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -76,58 +76,19 @@ DJANGO_APPS = [
     'django.contrib.humanize',
 ]
 THIRD_PARTY_APPS = [
-    'bootstrap4',
-    'django_select2',
-    'easyaudit',
     
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    
-    'allauth.socialaccount.providers.google',
-    #'rest_framework',
-    'storages',
-    'simple_history',
-    'taggit',
-]
-PUBLIC_APPS = [
-    'django_tenants',
-    'apps.escuelas',
-    'apps.usuarios',
-    'apps.manual_usuario',
 ]
 LOCAL_APPS = [
-    'apps.areas_academicas',
-    'apps.cursos',
-    'apps.modalidades',
-    'apps.notificaciones',
-    'apps.periodos_academicos',
-    'apps.permisos',
-    'apps.programas',
-    'apps.profundizacion',
-    'apps.usuarios',
-    'apps.core',
-    'apps.grupos_investigacion',
-    'apps.anteproyectos_pregrado',
-    'apps.proyectos_pregrado',
-    'apps.anteproyectos_posgrado',
-    'apps.proyectos_posgrado',
-    'apps.tableros_control',
-    'apps.reportes',
-    'apps.auditoria',
-    'apps.solicitudes_directores'
+    'apps.usuarios'  
 ]
 
-SHARED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PUBLIC_APPS
-TENANT_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS +LOCAL_APPS
 
-TENANT_MODEL = "escuelas.Escuela"
-TENANT_DOMAIN_MODEL = "escuelas.Dominio"
+#TENANT_MODEL = "escuelas.Escuela"
+#TENANT_DOMAIN_MODEL = "escuelas.Dominio"
 
 
 MIDDLEWARE = [
-    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,8 +96,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'simple_history.middleware.HistoryRequestMiddleware',
-    'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
 ]
 
 # STATIC

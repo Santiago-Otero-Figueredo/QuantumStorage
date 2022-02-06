@@ -25,6 +25,3 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404 = 'apps.usuarios.views.handler404'
-handler500 = 'apps.usuarios.views.handler500'
-handler403 = 'apps.usuarios.views.handler403'
