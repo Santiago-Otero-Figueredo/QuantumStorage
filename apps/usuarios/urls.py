@@ -5,6 +5,5 @@ from .views import *
 
 app_name = "usuarios"
 urlpatterns = [
-    
 
 ]
