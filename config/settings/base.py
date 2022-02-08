@@ -30,8 +30,11 @@ ALLOWED_HOSTS = get_secret('DOMINIOS_PROPIOS')
 AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (        
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
     )
 }
 
@@ -105,6 +108,9 @@ DJANGO_APPS = [
     'django.contrib.humanize',
 ]
 THIRD_PARTY_APPS = [
+    'bootstrap4',
+    'django_select2',
+    'rest_framework',
     'django_extensions',
     'rest_framework_simplejwt',
 ]
@@ -113,10 +119,6 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS +LOCAL_APPS
-
-#TENANT_MODEL = "escuelas.Escuela"
-#TENANT_DOMAIN_MODEL = "escuelas.Dominio"
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -169,32 +171,15 @@ else:
 # https://docs.djangoproject.com/en/dev/ref/settings/#templates
 TEMPLATES = [
     {
-        # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        'DIRS': [
-            str(APPS_DIR.path('templates')),
-        ],
+        'DIRS': [str(APPS_DIR.path('templates')), ],
+        'APP_DIRS': True,
         'OPTIONS': {
-            # https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-            'debug': DEBUG,
-            # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
-            # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ],
-            # https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'apps.permisos.context_processors.permisos_asignados'
             ],
         },
     },
@@ -209,8 +194,6 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
-
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
