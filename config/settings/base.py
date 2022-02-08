@@ -2,6 +2,8 @@ import environ
 import json
 import os
 
+from datetime import timedelta
+
 ROOT_DIR = environ.Path(__file__) - 3
 BASE_DIR = ROOT_DIR
 APPS_DIR = ROOT_DIR.path('apps')
@@ -26,6 +28,13 @@ ALLOWED_HOSTS = get_secret('DOMINIOS_PROPIOS')
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 AUTH_USER_MODEL = 'users.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (        
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 #LOGIN_REDIRECT_URL = 'usuarios:login'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
@@ -43,6 +52,25 @@ USE_TZ = False
 
 DATE_INPUT_FORMATS = ["%Y-%m-%d",]
 DATETIME_FORMAT = "Y-m-d h:i a"
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'UPDATE_LAST_LOGIN': False,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+    'JWK_URL': None,
+    'LEEWAY': 0,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -78,6 +106,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'django_extensions',
+    'rest_framework_simplejwt',
 ]
 LOCAL_APPS = [
     'apps.users',
@@ -180,6 +209,8 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
