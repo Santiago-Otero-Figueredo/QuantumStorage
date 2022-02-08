@@ -109,7 +109,6 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'bootstrap4',
-    'django_select2',
     'rest_framework',
     'django_extensions',
     'rest_framework_simplejwt',
@@ -229,5 +228,4 @@ EMAIL_PORT = EMAIL_CONFIG["EMAIL_PORT"]
 EMAIL_USE_TLS = EMAIL_CONFIG["EMAIL_USE_TLS"]
 DEFAULT_FROM_EMAIL = EMAIL_CONFIG["DEFAULT_FROM_EMAIL"]
 
-EMAIL_BIBLIOTECA =EMAIL_CONFIG['EMAIL_BIBLIOTECA']
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
