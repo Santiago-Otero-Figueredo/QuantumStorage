@@ -25,7 +25,7 @@ ALLOWED_HOSTS = get_secret('DOMINIOS_PROPIOS')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-AUTH_USER_MODEL = 'usuarios.Usuario'
+AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 #LOGIN_REDIRECT_URL = 'usuarios:login'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
@@ -33,6 +33,7 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 
 SECRET_KEY = get_secret('SECRET_KEY')
 DEBUG = get_secret('DEBUG')
+
 LANGUAGE_CODE = 'es'
 SITE_ID = 1
 TIME_ZONE = 'America/Bogota'
@@ -76,10 +77,10 @@ DJANGO_APPS = [
     'django.contrib.humanize',
 ]
 THIRD_PARTY_APPS = [
-    
+    'django_extensions',
 ]
 LOCAL_APPS = [
-    'apps.usuarios'  
+    'apps.users',
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS +LOCAL_APPS
