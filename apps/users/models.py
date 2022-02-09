@@ -11,6 +11,8 @@ class User(AbstractBaseUser, PermissionsMixin, QuantumStorageModel):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    objects = BaseUserManager()
+
     def __str__(self):
         return f"{self.email}"
 
