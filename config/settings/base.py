@@ -115,6 +115,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'apps.users',
+    'apps.folders',
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS +LOCAL_APPS

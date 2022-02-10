@@ -27,6 +27,6 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(('apps.auth.routers', 'apps.auth'), namespace='auth-api')),
-
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
