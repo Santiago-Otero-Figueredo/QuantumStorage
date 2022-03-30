@@ -6,8 +6,7 @@ from apps.core.models import QuantumStorageModel
 class User(AbstractBaseUser, PermissionsMixin, QuantumStorageModel):
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True,  null=True, blank=True)
-    is_active = models.BooleanField(default=True)
-
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
